@@ -270,7 +270,7 @@ fn onramp_loop(
                 }
             };
 
-            let json = match serde_json::to_string(&json) {
+            let json = match simd_json::to_string(&json) {
                 Ok(v) => v,
                 Err(e) => {
                     metrics_reporter.increment_error();

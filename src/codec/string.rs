@@ -31,7 +31,7 @@ impl Codec for String {
         if let Some(s) = data.as_str() {
             Ok(s.as_bytes().to_vec())
         } else {
-            Ok(serde_json::to_vec(&data)?)
+            Ok(simd_json::to_vec(&data)?)
         }
     }
 }

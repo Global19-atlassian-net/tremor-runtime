@@ -74,8 +74,8 @@ impl From<std::io::Error> for Error {
     }
 }
 
-impl From<serde_json::Error> for Error {
-    fn from(e: serde_json::Error) -> Self {
+impl From<simd_json::Error> for Error {
+    fn from(e: simd_json::Error) -> Self {
         Self::generic(
             StatusCode::BAD_REQUEST,
             &format!("json encoder failed: {}", e),
@@ -167,7 +167,7 @@ pub fn serialize<T: Serialize>(t: ResourceType, d: &T, ok_code: u16) -> Result<R
             .set_header("Content-Type", t.to_string()),
 
         ResourceType::Json => Response::new(ok_code)
-            .body_string(serde_json::to_string(d)?)
+            .body_string(simd_json::to_string(d)?)
             .set_header("Content-Type", t.to_string()),
     })
 }

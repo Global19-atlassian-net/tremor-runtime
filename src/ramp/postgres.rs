@@ -106,7 +106,7 @@ impl postgres::types::ToSql for Record<'_> {
                     None => "",
                 };
 
-                serde_json::to_writer(w.writer(), &val)?;
+                simd_json::to_writer(w.writer(), &val)?;
             }
             postgres::types::Type::JSONB => {
                 let val = match self.value.as_str() {
@@ -115,7 +115,7 @@ impl postgres::types::ToSql for Record<'_> {
                 };
                 w.put_u8(1);
 
-                serde_json::to_writer(w.writer(), &val)?;
+                simd_json::to_writer(w.writer(), &val)?;
             }
             postgres::types::Type::TIMESTAMPTZ => {
                 let val = match self.value.as_str() {

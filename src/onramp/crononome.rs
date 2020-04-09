@@ -280,7 +280,7 @@ fn onramp_loop(
         let mut ingest_ns = nanotime();
         let sched = cq.drain();
         for trigger in sched {
-            let data = serde_json::to_vec(
+            let data = simd_json::to_vec(
                 &json!({"onramp": "crononome", "ingest_ns": ingest_ns, "id": id, "trigger": {
                         "name": trigger.0,
                         "payload": trigger.1

@@ -420,7 +420,7 @@ async fn conductor_target_cmd(app: &mut TremorApp<'_>, cmd: &ArgMatches<'_>) -> 
     } else if let Some(matches) = cmd.subcommand_matches("delete") {
         conductor_target_delete_cmd(app, &matches).await
     } else {
-        println!("{}", serde_json::to_string(&app.config.instances)?);
+        println!("{}", simd_json::to_string(&app.config.instances)?);
         Ok(())
     }
 }
@@ -475,7 +475,7 @@ async fn conductor_version_cmd(app: &TremorApp<'_>, cmd: &ArgMatches<'_>) -> Res
         "{}",
         match cmd.value_of("format") {
             Some("yaml") => serde_yaml::to_string(&version)?,
-            _ => serde_json::to_string(&version)?,
+            _ => simd_json::to_string(&version)?,
         }
     );
     Ok(())
@@ -749,7 +749,7 @@ async fn handle_response(mut response: surf::Response) -> Result<()> {
 
 fn ser(app: &TremorApp<'_>, json: &simd_json::OwnedValue) -> Result<String> {
     Ok(match app.format {
-        FormatKind::Json => serde_json::to_string(&json)?,
+        FormatKind::Json => simd_json::to_string(&json)?,
         FormatKind::Yaml => serde_yaml::to_string(&json)?,
     })
 }
