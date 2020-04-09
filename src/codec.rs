@@ -15,7 +15,7 @@
 use crate::errors::*;
 use simd_json::BorrowedValue;
 use tremor_script::LineValue;
-pub(crate) mod binflux;
+pub mod binflux;
 pub(crate) mod influx;
 pub(crate) mod json;
 pub(crate) mod msgpack;

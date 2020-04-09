@@ -14,8 +14,6 @@
 
 //! Tremor runtime
 
-#![forbid(warnings)]
-#![deny(missing_docs)]
 #![recursion_limit = "1024"]
 #![deny(
     clippy::all,

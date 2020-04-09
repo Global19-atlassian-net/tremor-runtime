@@ -64,24 +64,24 @@ impl offramp::Impl for Rest {
 }
 
 impl Rest {
-    async fn flush(endpoint: &str, config: Config, payload: Vec<u8>) -> Result<u64> {
+    async fn flush(_endpoint: &str, _config: Config, _payload: Vec<u8>) -> Result<u64> {
         let start = Instant::now();
-        let mut c = if config.put {
-            surf::put(endpoint)
-        } else {
-            surf::post(endpoint)
-        };
-        c = c.body_bytes(&payload);
-        for (k, v) in config.headers {
-            use http::header::HeaderName;
-            match HeaderName::from_bytes(k.as_str().as_bytes()) {
-                Ok(h) => {
-                    c = c.set_header(&h, v.as_str());
-                }
-                Err(e) => error!("Bad header name: {}", e),
-            }
-        }
-        c.await?;
+        // let mut c = if config.put {
+        //     surf::put(endpoint)
+        // } else {
+        //     surf::post(endpoint)
+        // };
+        // c = c.body_bytes(&payload);
+        // for (k, v) in config.headers {
+        //     use http::header::HeaderName;
+        //     match HeaderName::from_bytes(k.as_str().as_bytes()) {
+        //         Ok(h) => {
+        //             c = c.set_header(&h, v.as_str());
+        //         }
+        //         Err(e) => error!("Bad header name: {}", e),
+        //     }
+        // }
+        // c.await?;
         let d = duration_to_millis(start.elapsed());
         Ok(d)
     }
