@@ -50,8 +50,8 @@ pub mod metrics;
 pub(crate) mod offramp;
 pub(crate) mod onramp;
 pub(crate) mod pipeline;
-pub(crate) mod postprocessor;
-pub(crate) mod preprocessor;
+pub mod postprocessor;
+pub mod preprocessor;
 pub(crate) mod ramp;
 /// Tremor registry
 pub mod registry;
